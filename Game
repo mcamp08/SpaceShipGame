@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroid Destroyer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Asteroid Destroyer</h1>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+    body {
+    background-color: #333;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#game-container {
+    margin: 0 auto;
+    width: 800px;
+    height: 600px;
+    position: relative;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    border: 1px solid #444;
+}
+// Initialize the 3D rendering engine
+var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById("game-canvas"),
+    antialias: true
+});
+renderer.setClearColor(0x000000);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(800, 600);
+
+// Create a new 3D scene
+var scene = new THREE.Scene();
+
+// Add a camera to the scene
+var camera = new THREE.PerspectiveCamera(75, 800 / 600, 0.1, 1000);
+camera.position.z = 5;
+scene.add(camera);
+
+// Add a directional light to the scene
+var light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(1, 1, 1);
+scene.add(light);
+
+// Create the spaceship model
+var spaceshipGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+var spaceshipMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+var spaceship = new THREE.Mesh(spaceshipGeometry, spaceshipMaterial);
+spaceship.position.set(0, 0, 0);
+scene.add(spaceship);
+
+// Create the asteroid model
+var asteroidGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+var asteroidMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+var asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
+asteroid.position.set(0, 0, -10);
+    
+</body>
+
+</html>
